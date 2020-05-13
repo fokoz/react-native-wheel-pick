@@ -95,13 +95,12 @@ export default class DatePicker extends PureComponent {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.date !== nextProps.date) {
-      this.parseDate(nextProps.date);
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.date !== prevProps.date) {
+      this.parseDate(this.props.date);
 
-      return { date: nextProps.date }
+      this.setState({ date: this.props.date })
     }
-    else return null;
   }
 
   parseDate = (date) => {
